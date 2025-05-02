@@ -42,6 +42,7 @@ img {
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -183,10 +184,10 @@ section {
 
 /* ========== HEADER STYLES ========== */
 header {
+    padding: 2rem 0;
+    text-align: center;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    text-align: center;
-    padding: 150px 0 100px;
     position: relative;
     overflow: hidden;
 }
@@ -195,14 +196,14 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15L38.66 30L30 45L21.33 30L30 15z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
-    opacity: 0.5;
+    right: 0;
+    bottom: 0;
+    background: url('images/pattern.png') repeat;
+    opacity: 0.1;
 }
 
-header h1 {
-    font-size: 3.5rem;
+.logo h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
     font-family: 'Amiri', serif;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -241,18 +242,10 @@ header p {
 /* ========== NAVIGATION STYLES ========== */
 nav {
     background-color: var(--dark-color);
-    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
-    z-index: 100;
-    transition: var(--transition);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-nav .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 1000;
 }
 
 .logo-small {
@@ -270,11 +263,14 @@ nav .container {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+    padding: 1rem;
 }
 
 .nav-links {
     display: flex;
+    justify-content: center;
     list-style: none;
+    padding: 1rem 0;
     gap: 2rem;
 }
 
@@ -1083,6 +1079,13 @@ footer {
 }
 
 @media (max-width: 768px) {
+    body, .container {
+        overflow-x: hidden;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
     .section-title {
         font-size: 2rem;
     }
@@ -1100,29 +1103,77 @@ footer {
     }
     
     .nav-links {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--dark-color);
+        display: none;
         flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-        transition: var(--transition);
-        gap: 1.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--dark-color);
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     
     .nav-links.active {
-        left: 0;
+        display: flex;
+    }
+    
+    .nav-links li {
+        margin: 0.5rem 0;
     }
     
     .about-content {
         grid-template-columns: 1fr;
     }
     
+    .card-creator, .card-form, .form-container, .preview-container {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
     .card-form {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+    .form-container {
+        width: 100%;
+        margin-bottom: 1.2rem;
+    }
+    .preview-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+    }
+    .card-preview {
+        width: 90%;
+        max-width: 350px;
+        min-width: 0;
+        box-sizing: border-box;
+        background: transparent;
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin: 0 auto 1.2rem auto;
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+    }
+    .card-preview-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 10px 0;
+        margin: 0;
     }
     
     .contact-container {
@@ -1174,7 +1225,41 @@ footer {
     }
     
     .card-creator {
-        padding: 1.5rem;
+        padding: 0.5rem 0.2rem;
+        margin-top: 1rem;
+        border-radius: var(--border-radius);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .card-form {
+        gap: 0.7rem;
+    }
+    .form-group {
+        margin-bottom: 0.7rem;
+    }
+    .card-preview {
+        width: 98vw;
+        max-width: 320px;
+        min-width: 0;
+        box-sizing: border-box;
+        background: transparent;
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin: 0 auto 1rem auto;
+        padding: 0.2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+    }
+    .card-preview-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 5px 0;
+        margin: 0;
     }
     
     .back-to-top {
@@ -1183,4 +1268,53 @@ footer {
         width: 40px;
         height: 40px;
     }
+}
+
+/* ========== NEW STYLES ========== */
+.card-view {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.card-view .card {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.card-view .card-content {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-color);
+}
+
+.card-view .share-buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.card-view .share-btn {
+    background-color: var(--accent-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.card-view .share-btn:hover {
+    background-color: var(--accent-dark);
+    transform: scale(1.1);
 }

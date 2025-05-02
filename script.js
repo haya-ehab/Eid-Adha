@@ -434,4 +434,99 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${window.location.href}`);
         window.open(`https://www.youtube.com/?text=${text}`, 'youtube-share-dialog', 'width=626,height=436');
     };
+
+    // Function to check if we're in card view mode
+    function isCardViewMode() {
+        return window.location.hash.startsWith('#card/');
+    }
+
+    // Function to display card in view mode
+    function displayCardView() {
+        if (!isCardViewMode()) return;
+
+        const cardData = window.location.hash.replace('#card/', '');
+        try {
+            const decodedData = decodeURIComponent(atob(cardData));
+            const card = JSON.parse(decodedData);
+            
+            // Hide all sections except the card view
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Create and display the card
+            const cardView = document.createElement('div');
+            cardView.className = 'card-view';
+            cardView.innerHTML = `
+                <div class="card">
+                    <div class="card-content">
+                        <h2>${card.title}</h2>
+                        <p>${card.message}</p>
+                        <p class="signature">- ${card.sender}</p>
+                    </div>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn" onclick="shareCard('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="share-btn" onclick="shareCard('twitter')">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-btn" onclick="shareCard('whatsapp')">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(cardView);
+        } catch (error) {
+            console.error('Error displaying card:', error);
+            window.location.href = '/';
+        }
+    }
+
+    // Update the shareCard function to include direct card link
+    function shareCard(platform) {
+        const cardData = {
+            title: document.getElementById('card-title').value,
+            message: document.getElementById('card-message').value,
+            sender: document.getElementById('sender-name').value
+        };
+        
+        const encodedData = btoa(JSON.stringify(cardData));
+        const directCardUrl = `${window.location.origin}${window.location.pathname}#card/${encodedData}`;
+        
+        let shareUrl = '';
+        const shareText = `Check out this Eid greeting card from ${cardData.sender}!`;
+        
+        switch (platform) {
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(directCardUrl)}`;
+                break;
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(directCardUrl)}`;
+                break;
+            case 'whatsapp':
+                shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + directCardUrl)}`;
+                break;
+            case 'email':
+                shareUrl = `mailto:?subject=${encodeURIComponent('Eid Greeting Card')}&body=${encodeURIComponent(shareText + '\n\n' + directCardUrl)}`;
+                break;
+            case 'sms':
+                const phoneNumber = document.getElementById('phone-number').value;
+                shareUrl = `sms:${phoneNumber}?body=${encodeURIComponent(shareText + ' ' + directCardUrl)}`;
+                break;
+        }
+        
+        if (shareUrl) {
+            window.open(shareUrl, '_blank');
+        }
+    }
+
+    // Initialize card view on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        if (isCardViewMode()) {
+            displayCardView();
+        }
+    });
 }); 
