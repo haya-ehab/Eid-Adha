@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid al-Adha Mubarak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="crescent"></div> 
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-pattern"></div>
+        <div class="container">
+            <div class="logo">
+                <h1 class="animate__animated animate__fadeInDown">Eid al-Adha Mubarak</h1>
+                <div class="crescent-logo">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Celebrate the blessed festival with joy and devotion</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo-small">
+                <h2>Eid Mubarak</h2>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#countdown">Countdown</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#greeting-cards">Greeting Cards</a></li>
+                <li><a href="#fun-facts">Fun Facts</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown">
+        <div class="container">
+            <h2 class="section-title">Eid al-Adha Countdown</h2>
+            <div class="countdown-timer">
+                <div class="countdown-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Eid al-Adha</h2>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right">
+                    <div class="image-container">
+                        <img src="images/eid ada.jpeg" alt="Eid al-Adha celebration">
+                        <!-- If no image available, uncomment the following div and remove the img tag -->
+                        <!-- <div class="placeholder-image">Eid al-Adha Celebration</div> -->
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <p>Eid al-Adha, also known as the "Festival of Sacrifice," is one of the most important Islamic holidays. It commemorates Prophet Ibrahim's willingness to sacrifice his son as an act of obedience to God, before God provided a ram to sacrifice instead.</p>
+                    <p>This significant event is celebrated by Muslims worldwide and marks the end of the annual Hajj pilgrimage to Mecca. The festival typically lasts for three days and is a time of prayer, sharing meals, giving gifts, and spending time with family and loved ones.</p>
+                    <p>During Eid al-Adha, Muslims traditionally sacrifice an animal such as a sheep, goat, cow, or camel, symbolizing Prophet Ibrahim's sacrifice. The meat is then divided into three parts: one part for the family, one part for relatives and friends, and one part for those in need. This practice emphasizes the importance of charity and caring for the less fortunate in the Islamic faith.</p>
+                    <div class="about-buttons">
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                        <a href="#greeting-cards" class="btn btn-secondary">Send Greetings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Greeting Cards Section -->
+    <section id="greeting-cards" class="greeting-cards">
+        <div class="container">
+            <h2 class="section-title">Eid Greeting Cards</h2>
+            <p class="section-description">Send beautiful Eid greetings to your loved ones!</p>
+            
+            <div class="cards-container">
+                <div class="card" data-aos="flip-left">
+                    <div class="card-image" style="background-image: url('images/g1.png')"></div>
+                    <div class="card-content">
+                        <h3>Traditional Greeting</h3>
+                        <p>A classic Eid greeting with traditional Islamic patterns and calligraphy.</p>
+                        <div class="card-actions">
+                            <a href="#" class="btn btn-card" data-template="traditional">Use This Template</a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn" onclick="shareOnFacebook('Traditional Greeting')"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnTwitter('Traditional Greeting')"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnWhatsApp('Traditional Greeting')"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="card-image" style="background-image: url('images/g2.png')"></div>
+                    <div class="card-content">
+                        <h3>Modern Design</h3>
+                        <p>Contemporary style with elegant typography and minimalist elements.</p>
+                        <div class="card-actions">
+                            <a href="#" class="btn btn-card" data-template="modern">Use This Template</a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn" onclick="shareOnFacebook('Modern Design')"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnTwitter('Modern Design')"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnWhatsApp('Modern Design')"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="card-image" style="background-image: url('images/g3.png')"></div>
+                    <div class="card-content">
+                        <h3>Family Celebration</h3>
+                        <p>Perfect for sending warm wishes to your entire family.</p>
+                        <div class="card-actions">
+                            <a href="#" class="btn btn-card" data-template="family">Use This Template</a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn" onclick="shareOnFacebook('Family Celebration')"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnTwitter('Family Celebration')"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnWhatsApp('Family Celebration')"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-creator" data-aos="fade-up">
+                <h3 class="creator-title">Create Your Own Card</h3>
+                <div class="card-form">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="recipient">Recipient's Name</label>
+                            <input type="text" id="recipient" class="form-control" placeholder="Enter recipient's name">
+                        </div>
+                        <div class="form-group">
+                            <label for="sender">Your Name</label>
+                            <input type="text" id="sender" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Write your Eid greeting"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="template">Select Template</label>
+                            <select id="template" class="form-control">
+                                <option value="traditional">Traditional</option>
+                                <option value="modern">Modern</option>
+                                <option value="family">Family</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Recipient's Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter recipient's email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Recipient's Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter recipient's phone number">
+                        </div>
+                        <button type="button" class="btn btn-primary preview-btn" onclick="previewCard()">Preview Card</button>
+                    </div>
+                    <div class="preview-container">
+                        <div class="card-preview" id="cardPreview">
+                            <div class="preview-placeholder">
+                                <i class="fas fa-envelope-open-text"></i>
+                                <h3>Your Card Preview</h3>
+                                <p>Fill out the form to see your card preview here</p>
+                            </div>
+                        </div>
+                        <div class="preview-actions">
+                            <div class="preview-share-buttons">
+                                <a href="#" class="share-btn" onclick="shareOnFacebook('Your Custom Eid Card')"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnTwitter('Your Custom Eid Card')"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnWhatsApp('Your Custom Eid Card')"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnInstagram('Your Custom Eid Card')"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnTelegram('Your Custom Eid Card')"><i class="fab fa-telegram"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnLinkedin('Your Custom Eid Card')"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="share-btn" onclick="shareOnYoutube('Your Custom Eid Card')"><i class="fab fa-youtube"></i></a>
+                            </div>
+                            <button type="button" class="btn btn-primary send-btn" onclick="sendCard()">Send Card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Fun Facts Section -->
+    <section id="fun-facts" class="fun-facts">
+        <div class="container">
+            <h2 class="section-title">Fun Facts About Eid al-Adha</h2>
+            <div class="facts-container">
+                <div class="fact-card" data-aos="zoom-in">
+                    <div class="fact-icon">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <h3>Different Names</h3>
+                    <p>Eid al-Adha is known by different names around the world, including Bakrid in India, Hari Raya Haji in Malaysia, and Tabaski in West Africa.</p>
+                </div>
+                
+                <div class="fact-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="fact-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3>Global Celebration</h3>
+                    <p>With over 1.8 billion Muslims worldwide, Eid al-Adha is celebrated across various cultures, each with their unique traditions and cuisines.</p>
+                </div>
+                
+                <div class="fact-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="fact-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Lunar Calendar</h3>
+                    <p>The date of Eid al-Adha changes each year as it follows the Islamic lunar calendar, moving approximately 11 days earlier each year in the Gregorian calendar.</p>
+                </div>
+                
+                <div class="fact-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="fact-icon">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <h3>Special Prayer</h3>
+                    <p>Muslims attend a special Eid prayer in the morning, usually held in large open areas or mosques, followed by a sermon (khutbah).</p>
+                </div>
+                
+                <div class="fact-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="fact-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>New Clothes</h3>
+                    <p>It's a tradition to wear new or best clothes during Eid celebrations, with many cultures having specific traditional attire for the occasion.</p>
+                </div>
+                
+                <div class="fact-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="fact-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Festive Foods</h3>
+                    <p>Special foods are prepared during Eid al-Adha, with different regions having their own traditional dishes like biryani, kebabs, and various sweet treats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">Contact Me</h2>
+          <p class="section-description">Have questions or need help with our greeting cards? Get in touch!</p>
+      
+          <div class="contact-container">
+            <form action="https://formspree.io/f/xzzrzgjw" method="POST" class="contact-form" data-aos="fade-right">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Your Email</label>
+                <input type="email" id="contact-email" name="email" class="form-control" placeholder="Enter your email" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter subject" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" class="form-control" rows="5" placeholder="Write your message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+      
+            <div class="contact-info" data-aos="fade-left">
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                  <h3>Email</h3>
+                  <p>haya.ehab.dev@gmail.com</p>
+                </div>
+              </div>
+      
+              <div class="footer-section">
+                <h3>Follow The Developer</h3>
+                <div class="social-icons">
+                  <a href="https://www.linkedin.com/in/haya-ehab-72206a351/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                  <a href="https://github.com/haya-ehab" class="social-icon"><i class="fab fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Eid al-Adha</h3>
+                    <p>Eid al-Adha is an important Islamic holiday celebrating Prophet Ibrahim's devotion to Allah and marks the end of the annual Hajj pilgrimage.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#countdown">Countdown</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#greeting-cards">Greeting Cards</a></li>
+                        <li><a href="#fun-facts">Fun Facts</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Subscribe</h3>
+                    <p>Subscribe to our newsletter for updates on Eid celebrations and new greeting card designs.</p>
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="button" class="btn btn-subscribe">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; By Haya Ehab.</p>
+                <p>&copy; 2025 Eid al-Adha Celebration. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Success!</h3>
+                <p>Your Eid greeting card has been sent successfully!</p>
+                <button class="btn btn-primary" id="closeModalBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- AOS JS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
