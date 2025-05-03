@@ -10,75 +10,166 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
-            background-color: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             font-family: 'Roboto', sans-serif;
+            /* Festive gradient background */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #a8e063 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+        .confetti {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1;
         }
         .card-view-wrapper {
-            width: 100%;
+            width: 100vw;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
         }
         .animated-greeting {
             font-size: 1.3rem;
-            color: #4CAF50;
+            color: #FFD700;
             margin-bottom: 18px;
             font-family: 'Amiri', serif;
             letter-spacing: 1px;
             text-align: center;
             min-height: 40px;
+            text-shadow: 0 0 8px #fff7c2, 0 0 16px #ffd70080;
         }
         .card-view-container {
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 22px 18px 28px 18px;
+            background: rgba(255,255,255,0.10);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+            padding: 28px 20px 32px 20px;
             text-align: center;
             margin: 0 auto;
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255,255,255,0.18);
+            position: relative;
+            animation: fadeInUp 1.2s cubic-bezier(.23,1.02,.32,1) both;
         }
-        .card-view-image {
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(60px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .eid-mubarak-glow {
+            font-family: 'Amiri', serif;
+            font-size: 2.1rem;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px #FFD700, 0 0 24px #1e3c72, 0 0 32px #a8e063;
+            animation: glow 2.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 12px #FFD700, 0 0 24px #1e3c72, 0 0 32px #a8e063; }
+            100% { text-shadow: 0 0 24px #FFD700, 0 0 32px #1e3c72, 0 0 48px #a8e063; }
+        }
+        .card-template-area {
             width: 100%;
-            height: 220px;
+            max-width: 520px;
+            height: 340px;
+            margin: 0 auto 28px auto;
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 32px #1e3c7240;
+            border: 2px solid #FFD70033;
+            background: #fff;
+        }
+        .card-template-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            border-radius: 10px;
-            margin-bottom: 18px;
+            z-index: 1;
         }
-        .card-view-message {
-            font-size: 1.08em;
-            line-height: 1.6;
-            margin: 16px 0;
-            padding: 14px;
-            background: #f9f9f9;
-            border-radius: 10px;
+        .card-template-message {
+            position: relative;
+            z-index: 2;
+            width: 85%;
+            margin: 0 auto;
+            color: #fff;
             font-family: 'Amiri', serif;
+            font-size: 1.35em;
+            text-align: center;
+            text-shadow: 0 2px 12px #1e3c72, 0 0 8px #FFD700;
+            background: rgba(0,0,0,0.18);
+            border-radius: 12px;
+            padding: 24px 16px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+        }
+        .card-to {
+            font-size: 1.05em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #fff7c2, 0 0 16px #ffd70080;
+        }
+        .card-from {
+            font-size: 1.05em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-top: 18px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #fff7c2, 0 0 16px #ffd70080;
+        }
+        .card-message-text {
+            font-size: 1.15em;
+            color: #fff;
+            margin: 0 0 0 0;
+            word-break: break-word;
+            line-height: 1.6;
+            padding: 0 2px;
+            max-width: 100%;
         }
         .card-view-sender {
-            font-style: italic;
-            color: #666;
-            margin-top: 14px;
-            font-size: 1em;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-size: 1.25em;
+            font-family: 'Amiri', serif;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 12px #FFD700, 0 0 24px #1e3c72, 0 0 32px #a8e063;
+            letter-spacing: 1px;
         }
         .back-to-home {
             display: inline-block;
             margin-top: 22px;
-            padding: 8px 18px;
-            background: #4CAF50;
-            color: white;
+            padding: 10px 22px;
+            background: #388e3c;
+            color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.05em;
+            box-shadow: 0 2px 8px #388e3c33;
+            transition: background 0.3s, color 0.3s;
+            border: none;
         }
         .back-to-home:hover {
-            background: #45a049;
+            background: #1e3c72;
+            color: #FFD700;
         }
         .error-message {
             color: #ff4444;
@@ -92,19 +183,77 @@
                 max-width: 98vw;
                 padding: 10px 2vw 18px 2vw;
             }
-            .card-view-image {
+            .card-template-area {
                 height: 140px;
             }
+            .eid-mubarak-glow {
+                font-size: 1.3rem;
+            }
+            .card-view-sender {
+                font-size: 1.05em;
+            }
+        }
+        @media (max-width: 600px) {
+            .card-template-area {
+                height: 180px;
+            }
+            .card-template-message {
+                font-size: 1em;
+                padding: 18px 6px 18px 6px;
+            }
+            .card-to, .card-from {
+                font-size: 0.98em;
+            }
+            .card-message-text {
+                font-size: 1em;
+            }
+        }
+        .card-preview-content {
+            border-radius: 8px;
+            padding: 30px;
+            color: white;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-gold-green {
+            background: linear-gradient(90deg, #FFD700 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px #FFD70088);
+        }
+        .gradient-gold-blue {
+            background: linear-gradient(90deg, #FFD700 0%, #1e3c72 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px #1e3c7288);
+        }
+        .confetti-bottom {
+            pointer-events: none;
+            position: fixed;
+            left: 0; bottom: 0; width: 100vw; height: 40vh;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
+    <canvas class="confetti"></canvas>
+    <canvas class="confetti-bottom"></canvas>
     <div class="card-view-wrapper">
         <div id="greetingText" class="animated-greeting animate__animated animate__fadeInDown"></div>
-        <div class="card-view-container">
-            <div class="card-view-image" id="cardImage"></div>
-            <div class="card-view-message" id="cardMessage"></div>
-            <div class="card-view-sender" id="cardSender"></div>
+        <div class="card-view-container animate__animated animate__bounceIn">
+            <div id="cardPreviewRender"></div>
             <a href="index.html" class="back-to-home">Back to Home</a>
         </div>
         <div id="errorContent" style="display: none;">
@@ -115,14 +264,64 @@
             </div>
         </div>
     </div>
-
     <script>
-        // Get URL parameters
+        // Confetti animation
+        function randomColor() {
+            const colors = ['#FFD700', '#4CAF50', '#1e3c72', '#a8e063', '#fff', '#2a5298'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        function drawConfetti(ctx, confetti) {
+            confetti.forEach(c => {
+                ctx.save();
+                ctx.globalAlpha = c.alpha;
+                ctx.fillStyle = c.color;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.size, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+            });
+        }
+        function animateConfetti(canvas, confetti) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawConfetti(ctx, confetti);
+            confetti.forEach(c => {
+                c.y += c.speed;
+                c.x += Math.sin(c.y / 20) * 1.2;
+                if (c.y > canvas.height) {
+                    c.y = -10;
+                    c.x = Math.random() * canvas.width;
+                    c.color = randomColor();
+                    c.size = 4 + Math.random() * 4;
+                    c.speed = 1 + Math.random() * 2.5;
+                    c.alpha = 0.7 + Math.random() * 0.3;
+                }
+            });
+            requestAnimationFrame(() => animateConfetti(canvas, confetti));
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.querySelector('.confetti');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let confetti = Array.from({length: 60}, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: 4 + Math.random() * 4,
+                color: randomColor(),
+                speed: 1 + Math.random() * 2.5,
+                alpha: 0.7 + Math.random() * 0.3
+            }));
+            animateConfetti(canvas, confetti);
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+
+        // Card logic
         const urlParams = new URLSearchParams(window.location.search);
         let recipient, sender, message, template;
-
         if (urlParams.has('data')) {
-            // Support encoded data parameter
             try {
                 const decoded = decodeURIComponent(atob(urlParams.get('data')));
                 const card = JSON.parse(decoded);
@@ -134,46 +333,101 @@
                 recipient = sender = message = template = null;
             }
         } else {
-            // Support simple URL format
             recipient = urlParams.get('recipient');
             sender = urlParams.get('sender');
             message = urlParams.get('message');
             template = urlParams.get('template');
         }
-
         if (recipient && sender && message && template) {
-            // Show animated greeting text
-            document.getElementById('greetingText').innerHTML = `You received a greeting card from <b>${sender}</b>!`;
-            document.getElementById('greetingText').style.display = 'block';
+            document.getElementById('greetingText').style.display = 'none';
             document.querySelector('.card-view-container').style.display = 'block';
             document.getElementById('errorContent').style.display = 'none';
-
-            document.getElementById('cardMessage').innerHTML = `
-                <h2>Dear ${recipient},</h2>
-                <p>${message}</p>
-                <p>Eid Mubarak!</p>
+            // Template styles from previewCard
+            const templateStyles = {
+                traditional: {
+                    background: 'linear-gradient(135deg, #8d5524, #e3b778)',
+                    border: '10px solid #e3b778',
+                    font: "'Amiri', serif",
+                    icon: '<i class="fas fa-mosque"></i>'
+                },
+                modern: {
+                    background: 'linear-gradient(135deg, #3a6b35, #a3c585)',
+                    border: '10px solid #a3c585',
+                    font: "'Roboto', sans-serif",
+                    icon: '<i class="fas fa-moon"></i>'
+                },
+                family: {
+                    background: 'linear-gradient(135deg, #9e5a63, #f0b7a4)',
+                    border: '10px solid #f0b7a4',
+                    font: "'Amiri', serif",
+                    icon: '<i class="fas fa-heart"></i>'
+                }
+            };
+            const selectedTemplate = templateStyles[template] || templateStyles['traditional'];
+            document.getElementById('cardPreviewRender').innerHTML = `
+                <div class="card-preview-content" style="
+                    background: ${selectedTemplate.background};
+                    border: ${selectedTemplate.border};
+                    font-family: ${selectedTemplate.font};
+                ">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15L38.66 30L30 45L21.33 30L30 15z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E'); opacity: 0.3;"></div>
+                    <div style="font-size: 3rem; margin-bottom: 18px; position: relative; z-index: 2;">${selectedTemplate.icon}</div>
+                    <h2 style="font-family: ${selectedTemplate.font}; margin-bottom: 20px; font-size: 2.2rem; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); position: relative; z-index: 2;">Eid al-Adha Mubarak</h2>
+                    <p style="margin-bottom: 28px; font-size: 1.7rem; font-family: 'Amiri', serif; font-weight: bold; letter-spacing: 1px; position: relative; z-index: 2; color: #fff; text-shadow: 0 2px 8px #1e3c72, 0 0 8px #FFD700;">Dear ${recipient},</p>
+                    <p style="margin-bottom: 32px; font-size: 1.5rem; font-family: 'Amiri', serif; font-weight: bold; line-height: 1.7; position: relative; z-index: 2; color: #fff; text-shadow: 0 2px 8px #1e3c72, 0 0 8px #FFD700;">
+                        ${message}
+                    </p>
+                    <p style="font-size: 1.4rem; font-family: 'Amiri', serif; font-weight: bold; color: #fff; text-shadow: 0 2px 8px #1e3c72, 0 0 8px #FFD700; position: relative; z-index: 2;">From, ${sender}</p>
+                </div>
             `;
-            document.getElementById('cardSender').textContent = `From: ${sender}`;
-
-            const cardImage = document.getElementById('cardImage');
-            switch(template) {
-                case 'traditional':
-                    cardImage.style.backgroundImage = "url('images/g1.png')";
-                    break;
-                case 'modern':
-                    cardImage.style.backgroundImage = "url('images/g2.png')";
-                    break;
-                case 'family':
-                    cardImage.style.backgroundImage = "url('images/g3.png')";
-                    break;
-                default:
-                    cardImage.style.backgroundImage = "url('images/g1.png')";
-            }
         } else {
             document.getElementById('greetingText').style.display = 'none';
             document.querySelector('.card-view-container').style.display = 'none';
             document.getElementById('errorContent').style.display = 'block';
         }
+
+        // Confetti from bottom
+        const canvasBottom = document.querySelector('.confetti-bottom');
+        canvasBottom.width = window.innerWidth;
+        canvasBottom.height = window.innerHeight * 0.4;
+        let confettiBottom = Array.from({length: 30}, () => ({
+            x: Math.random() * canvasBottom.width,
+            y: canvasBottom.height + Math.random() * 40,
+            size: 4 + Math.random() * 6,
+            color: randomColor(),
+            speed: 1 + Math.random() * 2.5,
+            alpha: 0.7 + Math.random() * 0.3,
+            rise: 1 + Math.random() * 1.5
+        }));
+        function animateConfettiBottom() {
+            const ctx = canvasBottom.getContext('2d');
+            ctx.clearRect(0, 0, canvasBottom.width, canvasBottom.height);
+            confettiBottom.forEach(c => {
+                ctx.save();
+                ctx.globalAlpha = c.alpha;
+                ctx.fillStyle = c.color;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.size, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+                c.y -= c.rise;
+                c.x += Math.sin(c.y / 20) * 1.2;
+                if (c.y < -10) {
+                    c.y = canvasBottom.height + Math.random() * 40;
+                    c.x = Math.random() * canvasBottom.width;
+                    c.color = randomColor();
+                    c.size = 4 + Math.random() * 6;
+                    c.rise = 1 + Math.random() * 1.5;
+                    c.alpha = 0.7 + Math.random() * 0.3;
+                }
+            });
+            requestAnimationFrame(animateConfettiBottom);
+        }
+        animateConfettiBottom();
+        window.addEventListener('resize', () => {
+            canvasBottom.width = window.innerWidth;
+            canvasBottom.height = window.innerHeight * 0.4;
+        });
     </script>
 </body>
 </html> 
