@@ -396,40 +396,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Social Media Sharing Functions
     window.shareOnFacebook = function(cardTitle) {
-        const url = encodeURIComponent(window.location.href);
+        const url = window.generateCardViewLink();
         const title = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card!`);
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, 'facebook-share-dialog', 'width=626,height=436');
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${title}`, 'facebook-share-dialog', 'width=626,height=436');
     };
 
     window.shareOnTwitter = function(cardTitle) {
-        const url = encodeURIComponent(window.location.href);
+        const url = window.generateCardViewLink();
         const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card!`);
-        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, 'twitter-share-dialog', 'width=626,height=436');
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}`, 'twitter-share-dialog', 'width=626,height=436');
     };
 
     window.shareOnWhatsApp = function(cardTitle) {
-        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${window.location.href}`);
+        const url = window.generateCardViewLink();
+        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${url}`);
         window.open(`https://wa.me/?text=${text}`, 'whatsapp-share-dialog', 'width=626,height=436');
     };
 
     window.shareOnInstagram = function(cardTitle) {
-        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${window.location.href}`);
+        const url = window.generateCardViewLink();
+        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${url}`);
         window.open(`https://www.instagram.com/?text=${text}`, 'instagram-share-dialog', 'width=626,height=436');
     };
 
     window.shareOnTelegram = function(cardTitle) {
-        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${window.location.href}`);
-        window.open(`https://t.me/share/url?url=${window.location.href}&text=${text}`, 'telegram-share-dialog', 'width=626,height=436');
+        const url = window.generateCardViewLink();
+        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${url}`);
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${text}`, 'telegram-share-dialog', 'width=626,height=436');
     };
 
     window.shareOnLinkedin = function(cardTitle) {
-        const url = encodeURIComponent(window.location.href);
+        const url = window.generateCardViewLink();
         const title = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card!`);
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`, 'linkedin-share-dialog', 'width=626,height=436');
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${title}`, 'linkedin-share-dialog', 'width=626,height=436');
     };
 
     window.shareOnYoutube = function(cardTitle) {
-        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${window.location.href}`);
+        const url = window.generateCardViewLink();
+        const text = encodeURIComponent(`Check out this beautiful ${cardTitle} Eid al-Adha greeting card! ${url}`);
         window.open(`https://www.youtube.com/?text=${text}`, 'youtube-share-dialog', 'width=626,height=436');
     };
 
