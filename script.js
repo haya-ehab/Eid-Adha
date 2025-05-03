@@ -529,4 +529,57 @@ document.addEventListener('DOMContentLoaded', function() {
             displayCardView();
         }
     });
+
+    // Generate a shareable card-view link
+    window.generateCardViewLink = function() {
+        const recipient = document.getElementById('recipient').value || 'Friend';
+        const sender = document.getElementById('sender').value || 'You';
+        const message = document.getElementById('message').value || 'Wishing you a blessed Eid al-Adha!';
+        const template = document.getElementById('template').value || 'traditional';
+        const cardData = { recipient, sender, message, template };
+        const encoded = btoa(encodeURIComponent(JSON.stringify(cardData)));
+        const link = `${window.location.origin}/card-view.html?data=${encoded}`;
+        return link;
+    };
+
+    // Optionally, add a button to show/copy the link in the preview area
+    function addShareableLinkButton() {
+        const previewActions = document.querySelector('.preview-actions');
+        if (!previewActions) return;
+        let linkBtn = document.getElementById('showCardLinkBtn');
+        if (!linkBtn) {
+            linkBtn = document.createElement('button');
+            linkBtn.id = 'showCardLinkBtn';
+            linkBtn.className = 'btn btn-secondary';
+            linkBtn.textContent = 'Get Shareable Card Link';
+            linkBtn.style.marginTop = '10px';
+            previewActions.appendChild(linkBtn);
+        }
+        linkBtn.onclick = function() {
+            const link = window.generateCardViewLink();
+            let linkBox = document.getElementById('cardLinkBox');
+            if (!linkBox) {
+                linkBox = document.createElement('input');
+                linkBox.id = 'cardLinkBox';
+                linkBox.type = 'text';
+                linkBox.readOnly = true;
+                linkBox.style.width = '100%';
+                linkBox.style.marginTop = '8px';
+                previewActions.appendChild(linkBox);
+            }
+            linkBox.value = link;
+            linkBox.select();
+            document.execCommand('copy');
+            linkBtn.textContent = 'Link Copied!';
+            setTimeout(() => { linkBtn.textContent = 'Get Shareable Card Link'; }, 1500);
+        };
+    }
+
+    // Add the button after preview is shown
+    window.previewCard = (function(origPreviewCard) {
+        return function() {
+            origPreviewCard();
+            addShareableLinkButton();
+        };
+    })(window.previewCard);
 }); 

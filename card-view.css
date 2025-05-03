@@ -1,0 +1,73 @@
+body {
+    background: #f8f0e3;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-view-container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 8px;
+    box-sizing: border-box;
+}
+
+.eid-card {
+    background: linear-gradient(135deg, #8d5524, #e3b778);
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+    padding: 2.5rem 1.5rem;
+    max-width: 370px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-family: 'Amiri', serif;
+    position: relative;
+}
+
+.eid-card .eid-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    color: #fff;
+}
+
+.eid-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+}
+
+.eid-card .card-message {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.eid-card .card-recipient {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.eid-card .card-sender {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+@media (max-width: 500px) {
+    .eid-card {
+        padding: 1.2rem 0.5rem;
+        max-width: 98vw;
+    }
+} 
