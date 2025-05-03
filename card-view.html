@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             background-color: #f5f5f5;
@@ -16,41 +17,60 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .card-view-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .animated-greeting {
+            font-size: 1.3rem;
+            color: #4CAF50;
+            margin-bottom: 18px;
+            font-family: 'Amiri', serif;
+            letter-spacing: 1px;
+            text-align: center;
+            min-height: 40px;
         }
         .card-view-container {
-            max-width: 800px;
+            max-width: 400px;
             width: 100%;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 30px;
+            padding: 22px 18px 28px 18px;
             text-align: center;
+            margin: 0 auto;
         }
         .card-view-image {
             width: 100%;
-            height: 400px;
+            height: 220px;
             background-size: cover;
             background-position: center;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .card-view-message {
-            font-size: 1.2em;
+            font-size: 1.08em;
             line-height: 1.6;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 16px 0;
+            padding: 14px;
             background: #f9f9f9;
             border-radius: 10px;
+            font-family: 'Amiri', serif;
         }
         .card-view-sender {
             font-style: italic;
             color: #666;
-            margin-top: 20px;
+            margin-top: 14px;
+            font-size: 1em;
         }
         .back-to-home {
             display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
+            margin-top: 22px;
+            padding: 8px 18px;
             background: #4CAF50;
             color: white;
             text-decoration: none;
@@ -60,46 +80,99 @@
         .back-to-home:hover {
             background: #45a049;
         }
+        .error-message {
+            color: #ff4444;
+            padding: 20px;
+            background: #ffeeee;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        @media (max-width: 500px) {
+            .card-view-container {
+                max-width: 98vw;
+                padding: 10px 2vw 18px 2vw;
+            }
+            .card-view-image {
+                height: 140px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="card-view-container">
-        <div class="card-view-image" id="cardImage"></div>
-        <div class="card-view-message" id="cardMessage"></div>
-        <div class="card-view-sender" id="cardSender"></div>
-        <a href="index.html" class="back-to-home">Back to Home</a>
+    <div class="card-view-wrapper">
+        <div id="greetingText" class="animated-greeting animate__animated animate__fadeInDown"></div>
+        <div class="card-view-container">
+            <div class="card-view-image" id="cardImage"></div>
+            <div class="card-view-message" id="cardMessage"></div>
+            <div class="card-view-sender" id="cardSender"></div>
+            <a href="index.html" class="back-to-home">Back to Home</a>
+        </div>
+        <div id="errorContent" style="display: none;">
+            <div class="error-message">
+                <h2>Oops!</h2>
+                <p>This card could not be found. Please check the URL or create a new card.</p>
+                <a href="index.html" class="back-to-home">Create New Card</a>
+            </div>
+        </div>
     </div>
 
     <script>
         // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
-        const recipient = urlParams.get('recipient');
-        const sender = urlParams.get('sender');
-        const message = urlParams.get('message');
-        const template = urlParams.get('template');
+        let recipient, sender, message, template;
 
-        // Set the card content
-        document.getElementById('cardMessage').innerHTML = `
-            <h2>Dear ${recipient},</h2>
-            <p>${message}</p>
-            <p>Eid Mubarak!</p>
-        `;
-        document.getElementById('cardSender').textContent = `From: ${sender}`;
+        if (urlParams.has('data')) {
+            // Support encoded data parameter
+            try {
+                const decoded = decodeURIComponent(atob(urlParams.get('data')));
+                const card = JSON.parse(decoded);
+                recipient = card.recipient;
+                sender = card.sender;
+                message = card.message;
+                template = card.template;
+            } catch (e) {
+                recipient = sender = message = template = null;
+            }
+        } else {
+            // Support simple URL format
+            recipient = urlParams.get('recipient');
+            sender = urlParams.get('sender');
+            message = urlParams.get('message');
+            template = urlParams.get('template');
+        }
 
-        // Set the background image based on template
-        const cardImage = document.getElementById('cardImage');
-        switch(template) {
-            case 'traditional':
-                cardImage.style.backgroundImage = "url('images/g1.png')";
-                break;
-            case 'modern':
-                cardImage.style.backgroundImage = "url('images/g2.png')";
-                break;
-            case 'family':
-                cardImage.style.backgroundImage = "url('images/g3.png')";
-                break;
-            default:
-                cardImage.style.backgroundImage = "url('images/g1.png')";
+        if (recipient && sender && message && template) {
+            // Show animated greeting text
+            document.getElementById('greetingText').innerHTML = `You received a greeting card from <b>${sender}</b>!`;
+            document.getElementById('greetingText').style.display = 'block';
+            document.querySelector('.card-view-container').style.display = 'block';
+            document.getElementById('errorContent').style.display = 'none';
+
+            document.getElementById('cardMessage').innerHTML = `
+                <h2>Dear ${recipient},</h2>
+                <p>${message}</p>
+                <p>Eid Mubarak!</p>
+            `;
+            document.getElementById('cardSender').textContent = `From: ${sender}`;
+
+            const cardImage = document.getElementById('cardImage');
+            switch(template) {
+                case 'traditional':
+                    cardImage.style.backgroundImage = "url('images/g1.png')";
+                    break;
+                case 'modern':
+                    cardImage.style.backgroundImage = "url('images/g2.png')";
+                    break;
+                case 'family':
+                    cardImage.style.backgroundImage = "url('images/g3.png')";
+                    break;
+                default:
+                    cardImage.style.backgroundImage = "url('images/g1.png')";
+            }
+        } else {
+            document.getElementById('greetingText').style.display = 'none';
+            document.querySelector('.card-view-container').style.display = 'none';
+            document.getElementById('errorContent').style.display = 'block';
         }
     </script>
 </body>
