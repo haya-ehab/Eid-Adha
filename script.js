@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Generate a shareable card-view link
+    // Generate a shareable card-view link (encoded data format)
     window.generateCardViewLink = function() {
         const recipient = document.getElementById('recipient').value || 'Friend';
         const sender = document.getElementById('sender').value || 'You';
@@ -536,7 +536,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const template = document.getElementById('template').value || 'traditional';
         const cardData = { recipient, sender, message, template };
         const encoded = btoa(encodeURIComponent(JSON.stringify(cardData)));
-        const link = `${window.location.origin}/card-view.html?data=${encoded}`;
+        // Detect the base path for GitHub Pages or localhost
+        let basePath = window.location.origin + window.location.pathname;
+        if (!basePath.endsWith('/')) {
+            basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+        }
+        const link = `${basePath}card-view.html?data=${encoded}`;
         return link;
     };
 
