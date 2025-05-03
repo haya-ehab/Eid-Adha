@@ -251,7 +251,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const phone = document.getElementById('phone').value;
 
         // Create the card view URL with parameters
-        const cardUrl = `./card-view.html?recipient=${encodeURIComponent(recipient)}&sender=${encodeURIComponent(sender)}&message=${encodeURIComponent(message)}&template=${encodeURIComponent(template)}`;
+        // Detect the base path for GitHub Pages or localhost
+        let basePath = window.location.origin + window.location.pathname;
+        if (!basePath.endsWith('/')) {
+            basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+        }
+        const cardUrl = `${basePath}card-view.html?recipient=${encodeURIComponent(recipient)}&sender=${encodeURIComponent(sender)}&message=${encodeURIComponent(message)}&template=${encodeURIComponent(template)}`;
 
         // Show success modal with the card URL
         const modal = document.getElementById('successModal');
@@ -265,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="card-url-container">
                 <p>Share this link with your recipient:</p>
                 <div class="card-url">
-                    <input type="text" value="${window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/' + cardUrl}" readonly>
+                    <input type="text" value="${cardUrl}" readonly>
                     <button onclick="copyCardUrl()" class="copy-btn">Copy</button>
                 </div>
             </div>
