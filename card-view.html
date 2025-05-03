@@ -3,15 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Eid Card</title>
-    <link rel="stylesheet" href="card-view.css">
+    <title>Eid al-Adha Greeting Card</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card-view-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        .card-view-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .card-view-message {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        .card-view-sender {
+            font-style: italic;
+            color: #666;
+            margin-top: 20px;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .back-to-home:hover {
+            background: #45a049;
+        }
+    </style>
 </head>
 <body>
     <div class="card-view-container">
-        <div id="eidCard" class="eid-card"></div>
+        <div class="card-view-image" id="cardImage"></div>
+        <div class="card-view-message" id="cardMessage"></div>
+        <div class="card-view-sender" id="cardSender"></div>
+        <a href="index.html" class="back-to-home">Back to Home</a>
     </div>
-    <script src="card-view.js"></script>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const recipient = urlParams.get('recipient');
+        const sender = urlParams.get('sender');
+        const message = urlParams.get('message');
+        const template = urlParams.get('template');
+
+        // Set the card content
+        document.getElementById('cardMessage').innerHTML = `
+            <h2>Dear ${recipient},</h2>
+            <p>${message}</p>
+            <p>Eid Mubarak!</p>
+        `;
+        document.getElementById('cardSender').textContent = `From: ${sender}`;
+
+        // Set the background image based on template
+        const cardImage = document.getElementById('cardImage');
+        switch(template) {
+            case 'traditional':
+                cardImage.style.backgroundImage = "url('images/g1.png')";
+                break;
+            case 'modern':
+                cardImage.style.backgroundImage = "url('images/g2.png')";
+                break;
+            case 'family':
+                cardImage.style.backgroundImage = "url('images/g3.png')";
+                break;
+            default:
+                cardImage.style.backgroundImage = "url('images/g1.png')";
+        }
+    </script>
 </body>
 </html> 

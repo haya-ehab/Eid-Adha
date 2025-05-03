@@ -1419,3 +1419,38 @@ footer {
         font-size: 1.05rem;
     }
 }
+
+.card-url-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.card-url {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.card-url input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    width: 70%;
+    max-width: 400px;
+    font-size: 14px;
+}
+
+.copy-btn {
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.copy-btn:hover {
+    background: #45a049;
+}

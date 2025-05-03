@@ -242,64 +242,57 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Send Card Function
-    window.sendCard = function() {
+    function sendCard() {
         const recipient = document.getElementById('recipient').value;
         const sender = document.getElementById('sender').value;
         const message = document.getElementById('message').value;
+        const template = document.getElementById('template').value;
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
-        const template = document.getElementById('template').value;
-        
-        // Validate form
-        if (!recipient) {
-            alert('Please enter recipient name');
-            document.getElementById('recipient').focus();
-            return;
-        }
-        
-        if (!email && !phone) {
-            alert('Please enter either recipient email or phone number');
-            return;
-        }
 
-        // Create message content
-        const greeting = `Dear ${recipient},\n\n${message}\n\nFrom,\n${sender}\n\nView this beautiful Eid al-Adha greeting card: ${window.location.href}`;
+        // Create the card view URL with parameters
+        const cardUrl = `card-view.html?recipient=${encodeURIComponent(recipient)}&sender=${encodeURIComponent(sender)}&message=${encodeURIComponent(message)}&template=${encodeURIComponent(template)}`;
 
-        // If email is provided, send email
-        if (email) {
-            const subject = `Eid al-Adha Greeting from ${sender}`;
-            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(greeting)}`;
-            window.location.href = mailtoLink;
-        }
-
-        // If phone number is provided, send SMS
-        if (phone) {
-            const smsLink = `sms:${phone}?body=${encodeURIComponent(greeting)}`;
-            window.location.href = smsLink;
-        }
-
-        // Show success modal
+        // Show success modal with the card URL
         const modal = document.getElementById('successModal');
-        modal.style.display = 'flex';
-        
-        // Reset form
-        document.getElementById('recipient').value = '';
-        document.getElementById('sender').value = '';
-        document.getElementById('message').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('phone').value = '';
-        document.getElementById('template').value = 'traditional';
-        
-        // Reset preview
-        const cardPreview = document.getElementById('cardPreview');
-        cardPreview.innerHTML = `
-            <div class="preview-placeholder">
-                <i class="fas fa-envelope-open-text"></i>
-                <h3>Your Card Preview</h3>
-                <p>Fill out the form to see your card preview here</p>
+        const modalContent = modal.querySelector('.modal-body');
+        modalContent.innerHTML = `
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
             </div>
+            <h3>Success!</h3>
+            <p>Your Eid greeting card has been created!</p>
+            <div class="card-url-container">
+                <p>Share this link with your recipient:</p>
+                <div class="card-url">
+                    <input type="text" value="${window.location.origin + '/' + cardUrl}" readonly>
+                    <button onclick="copyCardUrl()" class="copy-btn">Copy</button>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="closeModalBtn">OK</button>
         `;
-    };
+        modal.style.display = "block";
+
+        // Close modal when clicking the close button
+        const closeBtn = document.getElementById('closeModalBtn');
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+    function copyCardUrl() {
+        const urlInput = document.querySelector('.card-url input');
+        urlInput.select();
+        document.execCommand('copy');
+        alert('Card URL copied to clipboard!');
+    }
     
     // Share Card Function
     window.shareCard = function() {
